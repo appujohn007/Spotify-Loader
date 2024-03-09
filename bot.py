@@ -6,6 +6,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import BadRequest, FloodWait
 from motor import motor_asyncio
+from pyrogram import enums
+
 
 # Configs
 API_HASH = os.environ.get("API_HASH", "f8a1b21a13af154596e2ff5bed164860") # Your API HASH
@@ -111,7 +113,7 @@ Commands:
 - `/start` : Show start message''', 
         True,
         reply_markup=InlineKeyboardMarkup(START_BUTTONS),
-        parse_mode='html'
+        parse_mode=enums.ParseMode.HTML
     )
 
 @xbot.on_message(filters.regex(r'http.*:[/][/]open[.]spotify[.]com.(track|album|artist|playlist)', re.M) & OWNER_FILTER & filters.private)
@@ -161,7 +163,7 @@ async def search(bot, update):
         except FloodWait as e:
             await asyncio.sleep(e.x)
             await bot.send_audio(chat_id=update.from_user.id, audio=music)
-    await update.reply(f'Successfully uploaded {x}', parse_mode='html')
+    await update.reply(f'Successfully uploaded {x}', parse_mode=enums.ParseMode.HTML)
     shutil.rmtree(dirs)
     
 
@@ -199,7 +201,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
             f'Current Output Format: `{stats["output_format"]}`\n\nSelect one of the buttons below to change your output format.',
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
@@ -228,7 +230,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
             f'Current Output Format: `{stats["output_format"]}`\n\nSelect one of the buttons below to change your output format.',
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
@@ -251,7 +253,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
             f'Is Using Youtube: `{str(stats["use_youtube"])}`\n\nSelect one of the buttons below to change your is using youtube.',
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
@@ -270,7 +272,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
             f'Is Using Youtube: `{str(stats["use_youtube"])}`\n\nSelect one of the buttons below to change your is using youtube.',
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
@@ -285,7 +287,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
             f'Current Path Template: `{str(stats["path_template"])}`\n\nSelect one of the buttons below to change your current path template.',
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
@@ -313,7 +315,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
                     InlineKeyboardButton("Back", callback_data="back"),
                 ],
             ]),
-            parse_mode='html'
+            parse_mode=enums.ParseMode.HTML
         )
     if cb_data == 'back':
         await updatex.message.edit(
@@ -390,7 +392,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 await bot.send_audio(chat_id=update.from_user.id, audio=music)
-    await update.reply(f'Successfully uploaded {x} from a Spotify {xx} [ㅤ]({spurl})', parse_mode='html')
+    await update.reply(f'Successfully uploaded {x} from a Spotify {xx} [ㅤ]({spurl})', parse_mode=enums.ParseMode.HTML)
     shutil.rmtree(dirs)
 
 
