@@ -167,7 +167,7 @@ async def search(bot, update):
 
 @xbot.on_message(filters.command('settings') & OWNER_FILTER & filters.private)
 async def settings(bot, update):
-    if db:
+    if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
         await update.reply(
