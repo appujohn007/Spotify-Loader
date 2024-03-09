@@ -227,8 +227,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         await edit_stats(id=update.from_user.id, stats='output_format', stats_to_edit=cb_data)
         stats = await get_stats(update.from_user.id)
         await updatex.message.edit(
-            f'Current Output Format: `{stats["output_format"]}`\n\nSelect one of the buttons below to change your output format.',
-            parse_mode='markdown'
+            f'Current Output Format: `{stats["output_format"]}`\n\nSelect one of the buttons below to change your output format.'
         )
         return await updatex.message.edit_reply_markup(
             InlineKeyboardMarkup([
