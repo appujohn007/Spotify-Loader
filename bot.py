@@ -88,7 +88,7 @@ else:
 # Start message
 @xbot.on_message(filters.command('start') & OWNER_FILTER & filters.private)
 async def start(bot, update):
-    if db:
+    if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
     await update.reply('I\'m Spotify-Loader\nYou can download spotify playlist/artist/album/track music using this bot!', True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
@@ -96,7 +96,7 @@ async def start(bot, update):
 
 @xbot.on_message(filters.command('help') & OWNER_FILTER & filters.private)
 async def help(bot, update):
-    if db:
+    if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
     await update.reply(
@@ -116,7 +116,7 @@ Commands:
 
 @xbot.on_message(filters.regex(r'http.*:[/][/]open[.]spotify[.]com.(track|album|artist|playlist)', re.M) & OWNER_FILTER & filters.private)
 async def downloader(bot, update):
-    if db:
+    if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
     await update.reply('Select Options Below!', True, reply_markup=InlineKeyboardMarkup(CB_BUTTONS))
@@ -127,7 +127,7 @@ async def search(bot, update):
     query = update.text.split(' ', 1)[1]
     rndm = uuid.uuid4().hex
     dirs = f'./{rndm}/'
-    if db:
+    if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
         stats = await get_stats(update.from_user.id)
