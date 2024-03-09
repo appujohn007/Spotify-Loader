@@ -390,7 +390,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 await bot.send_audio(chat_id=update.from_user.id, audio=music)
-    await update.reply(f'Successfully uploaded {x} from a Spotify {xx} [ㅤ]({spurl})', parse_mode='markdown')
+    await update.reply(f'Successfully uploaded {x} from a Spotify {xx} [ㅤ]({spurl})', parse_mode='html')
     shutil.rmtree(dirs)
 
 
