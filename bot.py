@@ -336,7 +336,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
     url = updatex.message.reply_to_message.text
     rndm = uuid.uuid4().hex
     dirs = f'./{rndm}/'
-    if db:
+    if db is not None:
         stats = await get_stats(update.from_user.id)
         if stats['output_format']:
             of = f' --output-format {stats["output_format"]}'
