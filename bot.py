@@ -40,16 +40,15 @@ async def get_stats(id):
 # Buttons
 START_BUTTONS=[
     [
-        InlineKeyboardButton("Source", url="https://github.com/X-Gorn/Spotify-Loader"),
-        InlineKeyboardButton("Project Channel", url="https://t.me/xTeamBots"),
+        InlineKeyboardButton("Project Channel", url="https://t.me/botio_devs"),
     ],
-    [InlineKeyboardButton("Author", url="https://t.me/xgorn")],
+    [InlineKeyboardButton("Author", url="https://t.me/APPUZ_001")],
 ]
 
 CB_BUTTONS=[
     [
-        InlineKeyboardButton("Send as ZIP", callback_data="zip"),
-        InlineKeyboardButton("Send one by one", callback_data="1by1"),
+        InlineKeyboardButton("Send Songs as ZIP", callback_data="zip"),
+        InlineKeyboardButton("Send Songs one by one", callback_data="1by1"),
     ]
 ]
 
@@ -93,7 +92,7 @@ async def start(bot, update):
     if db is not None:
         if not await is_user_exist(update.from_user.id):
             await add_user(id=update.from_user.id, output_format='mp3', use_youtube="False", path_template='{artist}/{album}/{artist} - {title}.{ext}')
-    await update.reply('I\'m Spotify-Loader\nYou can download spotify playlist/artist/album/track music using this bot!', True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply('I\'m Spotify Downloader\nYou can download spotify playlist/artist/album/track music using this bot!', True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 @xbot.on_message(filters.command('help') & OWNER_FILTER & filters.private)
