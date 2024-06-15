@@ -12,9 +12,9 @@ from pyrogram import enums
 # Configs
 API_HASH = os.environ.get("API_HASH", "f8a1b21a13af154596e2ff5bed164860") # Your API HASH
 API_ID = int(os.environ.get("API_ID", 10471716)) # Your API ID
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "6365859811:AAF1Aj_VrbdxS9aPED2PqjwRaeEi4fcm_JE") # Your Bot Token
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6916875347:AAEVxR4cO_sIBB6V57ANA92pHKxzw9G3yX0") # Your Bot Token
 try:
-    OWNER_IDS = [int(x) for x in os.environ.get("OWNER_IDS", "6883997969").split(',')] # Your Telegram ID / Can be more than 1 ids
+    OWNER_IDS = [int(x) for x in os.environ.get("OWNER_IDS", "").split(',')] # Your Telegram ID / Can be more than 1 ids
 except ValueError:
     OWNER_IDS = ''
 MONGODB = os.environ.get("MONGODB", "mongodb+srv://appuz:chrijismiappuz@cluster0.yngvhc2.mongodb.net/?retryWrites=true&w=majority") # Your Mongo DB URL
